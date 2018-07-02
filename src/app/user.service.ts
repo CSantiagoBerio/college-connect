@@ -4,18 +4,17 @@ import { LoginComponent } from './login/login.component';
 import { User, LoginForm } from './User';
 import { Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class ChatService {
+export class UserService {
 
-  apiRoot = 'http://jechat-restapi.herokuapp.com/JEChat';
+  apiRoot = 'http://jechat-restapi.herokuapp.com/JEChat/';
   result: any;
 
-  login(form) {
-    console.log(form);
-    console.log('Starting login() function');
-    return this.http.post(this.apiRoot + '/login', form ).toPromise().then( res => JSON.stringify(res.User));
+  loadProfile(id: number) {
+    return this.http.get<User>(this.apiRoot + id);
   }
 
   constructor(private http: HttpClient, private router: Router) {}

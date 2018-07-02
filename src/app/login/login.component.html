@@ -5,7 +5,7 @@
             <div class="card blue-grey darken-2" style="width: 50%; align-content: center">
                 <div class="card-content">
                     <span class="card-title">Login</span>
-                        <form  #loginForm="ngForm" (ngSubmit)="signIn(loginForm)">
+                        <form  #loginForm="ngForm" (ngSubmit)="signIn(loginForm); reset()">
                              <h4 style="align-content: center">Username/Email:</h4><br>
                             <input type="text" placeholder="Username/Email" name="badge" [(ngModel)]="loginForm.badge" #badge="ngModel" required><br>
                             
@@ -17,7 +17,7 @@
                             <input class="btn blue-grey darken-1" type="submit" value="Sign in" style="border-radius: 10px">
                         </form>
                         <div class="card-action">
-                          <button class="btn blue-grey darken-1" type="submit" style="border-radius: 10px" routerLink="/register">Register</button>
+                          <button class="btn blue-grey darken-1" type="submit" style="border-radius: 10px" (click)="register()">Register</button>
                         </div>
                 </div>
             </div>
@@ -25,6 +25,10 @@
         <div class="col s3 m4"></div>
     </div>
 </div>
+
+<mat-card>
+    Hi ya'll
+</mat-card>
 
 <p>{{loginForm.badge}}</p>
 <p>{{loginForm.password}}</p>

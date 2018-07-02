@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ChatService } from '../chat.service';
-import { LoginComponent } from '../login/login.component';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { UserService } from '../user.service';
+import { ActivatedRoute } from '@angular/router';
+import { User } from '../User';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -10,22 +12,39 @@ import { LoginComponent } from '../login/login.component';
 })
 export class ProfileComponent implements OnInit {
 
-  profile = {
+  profile: User = {
+    usrid: 0,
     firstname: '',
     lastname: '',
-    email: '',
     phone: '',
+    email: '',
     username: ''
   };
 
-  showUser() {
-    console.log(this.profile);
+  id: any;
+
+  loadProfile() {
+    this.user.loadProfile(this.id).subscribe(
+      res => {
+        this.profile = res['User'];
+      }
+    );
   }
 
-  constructor(private http: HttpClient, private chat: ChatService) { }
+  goBack() {
+    this.location.back();
+  }
+
+  constructor(
+    private http: HttpClient,
+    private user: UserService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
 
   ngOnInit() {
-    this.showUser();
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.loadProfile();
   }
 
 }
