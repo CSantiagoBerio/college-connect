@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginForm } from '../User';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
@@ -17,21 +17,21 @@ export class LoginComponent implements OnInit {
    userInfo: any;
    result: any;
 
-  loginForm: any;
+  loginForm: FormGroup;
 
   constructor(
     private http: HttpClient,
     private login: LoginService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) { }
 
-  signIn(form) {
-      console.log(form);
-      this.loginForm = {username: form.badge, password: form.password};
-      this.result = this.login.login(this.loginForm)
+  signIn() {
+      console.log(this.loginForm.value);
+      this.result = this.login.login(this.loginForm.value)
       .then(res => console.log(res))
       .catch(error => alert(error));
-      this.loginForm = [];
+      this.loginForm.reset();
     }
 
   register() {
@@ -39,6 +39,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
 }

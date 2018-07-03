@@ -1,80 +1,75 @@
-<div style="align-content: center; text-align: center">
-  <div class="row ">
-    <div class="col s3"></div>
-    <div class="col s6 m6">
-      <div class="card blue-grey darken-2">
-        <div class="card-content">
-          <div class="row">
-            <form class="col s12" #registerForm="ngForm" (ngSubmit)="register(registerForm, repassword)">
-              <div class="container">
-                <h1>Register</h1>
-                <p>Please fill out this form to create an account. Thank You!</p>
-                <table>
-                  <tr>
-                    <td>
-                      <h6>First Name</h6>
-                      <input class="form-input" type="text" placeholder="Firstname" name='firstname' [(ngModel)]="registerForm.firstname" #firstname="ngModel"
-                        required>
-                      <br>
-                    </td>
-                    <td>
-                      <h6>Last Name</h6>
-                      <input class="form-input" type="text" placeholder="Lastname" name='lastname' [(ngModel)]="registerForm.lastname" #lastname="ngModel"
-                        required>
-                      <br>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <h6>Phone #</h6>
-                      <input class="form-input" type="text" placeholder="Phone #" name='phone' [(ngModel)]="registerForm.phone" #phone="ngModel"
-                        required>
-                      <br>
-                    </td>
-                    <td>
-                      <h6>Email</h6>
-                      <input class="form-input" type="email" placeholder="Email" name='email' [(ngModel)]="registerForm.email" #email="ngModel"
-                        required>
-                      <br>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <h6>Username</h6>
-                      <input class="form-input" type="text" placeholder="Username" name='username' [(ngModel)]="registerForm.username" #username="ngModel"
-                        required>
-                      <br>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <h6>Password</h6>
-                      <input class="form-input" type="password" placeholder="Password" name='password' [(ngModel)]="registerForm.password" #password="ngModel"
-                        required>
-                      <br>
-                    </td>
-                    <td>
-                      <h6>Re-enter Password</h6>
-                      <input class="form-input" type="password" placeholder="Password" name='repassword' [(ngModel)]="repassword" #repasswordtext="ngModel"
-                        required>
-                      <br>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: right">
-                      <input class="btn blue-grey darken-1" type="submit" value="Register" style="border-radius: 10px">
-                      <br>
-                    </td>
-                    <td>
-                      <input class="btn blue-grey darken-1" type="button" value="Sign in" (click)="goBack()" style="border-radius: 10px">
-                    </td>
-                  </tr>
-                </table>
+<!-- Start of card container -->
+<div class="row">
+  <div class="col s3"></div>
+  <div class="col s6 m6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Register!</span>
+
+        <!-- Start of form container -->
+
+        <div class="row">
+          <form class="col s12" [formGroup]="registerForm" (ngSubmit)="register()">
+
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="first_name" formControlName="firstname" type="text" class="validate">
+                <label for="first_name">First Name</label>
+                <span *ngIf="firstname.touched && firstname.invalid" style="color: red">
+                  required filled
+                </span>
               </div>
-            </form>
-          </div>
+
+              <div class="input-field col s6">
+                <input id="last_name" formControlName="lastname" type="text" class="validate">
+                <label for="last_name">Last Name</label>
+                <span *ngIf="lastname.touched && lastname.invalid" style="color: red">
+                    required filled
+                  </span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="user" formControlName="username" type="text" class="validate">
+                <label for="user">Username</label>
+              </div>
+
+              <div class="input-field col s6">
+                <input id="passwd" formControlName="password" type="password" class="validate">
+                <label for="passwd">Password</label>
+                <span *ngIf="password.touched && password.invalid" style="color: red">
+                    required filled
+                  </span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="e-mail" formControlName="email" type="email" class="validate">
+                <label for="e-mail">Email</label>
+                <span class="helper-text" data-error="Wrong email format"></span>
+              </div>
+
+              <div class="input-field col s6">
+                <input id="telephone" formControlName="phone" type="tel" class="validate">
+                <label for="telephone">Phone #</label>
+                <span *ngIf="phone.touched && phone.invalid" style="color: red">
+                    required filled
+                  </span>
+              </div>
+
+            </div>
+
+            <div style="text-align: center">
+              <input class="btn blue-grey darken-1" type="submit" value="Register" style="margin: 15px" [disabled]="registerForm.invalid">
+              <input class="btn blue-grey darken-1" type="button" value="Sign In" routerLink="/CConnect/login" style="margin: 15px">
+            </div>
+
+          </form>
         </div>
       </div>
     </div>
   </div>
+  <div class="col s3"></div>
 </div>

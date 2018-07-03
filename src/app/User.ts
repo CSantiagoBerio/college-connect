@@ -12,3 +12,5 @@ export class User {
     email: string;
     username: string;
 }
+
+export const apiRoot = 'http://jechat-restapi.herokuapp.com/JEChat/';

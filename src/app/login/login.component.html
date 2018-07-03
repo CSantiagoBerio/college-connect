@@ -5,13 +5,13 @@
             <div class="card blue-grey darken-2" style="width: 50%; align-content: center">
                 <div class="card-content">
                     <span class="card-title">Login</span>
-                        <form  #loginForm="ngForm" (ngSubmit)="signIn(loginForm); reset()">
-                             <h4 style="align-content: center">Username/Email:</h4><br>
-                            <input type="text" placeholder="Username/Email" name="badge" [(ngModel)]="loginForm.badge" #badge="ngModel" required><br>
+                        <form  [formGroup]="loginForm" (ngSubmit)="signIn()">
+                            <h4 style="align-content: center">Username/Email:</h4><br>
+                            <input type="text" placeholder="Username/Email" name="username" formControlName="username"><br>
                             
 
-                             <h4 style="align-content: center">Password:</h4><br>
-                            <input type="password" placeholder="Password" name="password" [(ngModel)]="loginForm.password" #password="ngModel" required><br>
+                            <h4 style="align-content: center">Password:</h4><br>
+                            <input type="password" placeholder="Password" name="password" formControlName="password" required><br>
                             
 
                             <input class="btn blue-grey darken-1" type="submit" value="Sign in" style="border-radius: 10px">
@@ -26,8 +26,18 @@
     </div>
 </div>
 
-<mat-card>
-    Hi ya'll
+<mat-card class="login-card">
+    <mat-card-content>
+        <form class="">
+            <mat-form-field class="">
+              <input matInput placeholder="Favorite food" value="Sushi">
+            </mat-form-field>
+          
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Leave a comment">
+            </mat-form-field>
+          </form>
+    </mat-card-content>
 </mat-card>
 
 <p>{{loginForm.badge}}</p>

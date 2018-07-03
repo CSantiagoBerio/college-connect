@@ -5,13 +5,15 @@ import { LoginComponent } from '../login/login.component';
 import { HomeComponent } from '../home/home.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { RegisterComponent } from '../register/register.component';
+import { GroupchatsComponent } from '../groupchats/groupchats.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'CConnect/home', pathMatch: 'full'},
   {path: 'CConnect/home', component: HomeComponent},
   {path: 'CConnect/login', component: LoginComponent},
   {path: 'CConnect/:id/profile', component: ProfileComponent},
-  {path: 'CConnect/register', component: RegisterComponent}
+  {path: 'CConnect/register', component: RegisterComponent},
+  {path: 'CConnect/:id/Groupchats', component: GroupchatsComponent}
 ];
 
 @NgModule({
