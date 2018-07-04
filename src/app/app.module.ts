@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GroupchatsComponent } from './groupchats/groupchats.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { GroupchatsComponent } from './groupchats/groupchats.component';
     HomeComponent,
     ProfileComponent,
     RegisterComponent,
-    GroupchatsComponent
+    GroupchatsComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

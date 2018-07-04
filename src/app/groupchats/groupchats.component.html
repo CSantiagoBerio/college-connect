@@ -12,7 +12,7 @@
           <tbody>
               <tr *ngFor="let group of groupList;">
                   <td>
-                      <a class="waves-effect  blue-grey darken-1 btn-small" (click)="entergroup(group.groupname)">Enter</a>
+                      <a class="waves-effect  blue-grey darken-1 btn-small" (click)="enter(group['groupname'])">Enter</a>
                   </td>
                   <td>{{ group['groupname'] }}</td>
                   <td>{{ group['date'] }}</td>
@@ -26,14 +26,14 @@
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
             <span class="card-title"></span>
-            <form >
+            <form [formGroup]="newgroup" (ngSubmit)="addGroup()">
               <tr>
                 <td>
-                  <input type="text" placeholder="Group Name" name="newgroup" ng-model="namegroup" required style="border-radius: 10px; text-align: center; background-color: white">
+                  <input type="text" placeholder="Group Name" name="newgroup" formControlName="groupname" style="border-radius: 10px; text-align: center; background-color: white">
                 </td>
               </tr>
               <div class="card-action" style="align-content: center; text-align: center">
-                <button class="waves-effect blue-grey darken-1 btn-small" type="submit" ng-click="newgroup()">Add New Groupchat</button>
+                <button class="waves-effect blue-grey darken-1 btn-small white-text" type="submit" [disabled]="newgroup.invalid">Add New Group</button>
               </div>
             </form>
           </div>

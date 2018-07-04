@@ -34,6 +34,22 @@ export class GroupchatService {
     return promise;
   }
 
+  newGroup(groupname, id) {
+    const promise = new Promise((resolve, reject) => {
+      this.http.post(this.url + id + '/GroupChats', groupname).toPromise().then(
+        response => {
+          console.log(response);
+          resolve(response)
+;        },
+        error => {
+          alert('Something went wrong while fetching the data requested');
+          reject(error);
+        }
+      );
+    });
+    return promise;
+  }
+
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
    }
 }
